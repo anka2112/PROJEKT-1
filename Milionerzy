@@ -1,0 +1,474 @@
+#include <iostream>
+#include <fstream>//pliki
+#include <string>//lancuchy
+#include <windows.h>
+#include <algorithm>//do wykluczenia blednej odpowiedzi gdy z capslockiem
+#include<conio.h>//wcisnij dowolny klawisz by przejsc dalej (funkcja getch)
+
+using namespace std;
+
+int main()
+{
+    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+    SetConsoleTextAttribute(hConsole, 9);
+   
+        int points3 = 0;
+        int points2 = 0;
+        int points1 = 0;
+    // napis milionerzy
+        char z;
+        ifstream plik("logo.txt");
+        if (plik.is_open())
+        {
+            while (!plik.eof())
+            {
+                plik.get(z);
+                cout << z;
+            }
+        }
+        else
+            cout << "Nie znaleziono pliku! Masz jakis blad...sprobuj jeszcze raz niunia :)" << endl;
+        plik.close();
+        cout << endl;
+        cout << endl;
+
+        for (int i = 1; i >= 0; i--)
+        {
+            Sleep(1000);
+        }
+
+     //wprowadzenie
+       
+        cout << "Witaj w programie Milionerzy!" << endl << endl;
+        cout << "Ja nazywam sie Anna Woznicka, a za moment zobaczysz 12 pytan z wybranej kategorii, ktore zaprowadza Cie do $Miliona$!" << endl;
+     
+        SetConsoleTextAttribute(hConsole, 7);
+        for (int i = 1; i >= 0; i--)
+        {
+            Sleep(1000);
+        }
+        cout << endl;
+        cout << "Poznajmy sie! Jak sie nazywasz? :)" << endl;
+        char name[40];
+        int ans0;
+        cin.get(name, 40);
+        cout << "Czesc " << name << "! Zaczynamy goraca rozgrywke o milion? Przeczytaj instrukcje i dzialaj!\n12 punktow = MILION ZLOTYCH!" << endl;
+
+     //menu poczatkowe (zacznij gre/zobacz instrukcje/wyjdz z programu)
+        cout << "_____________________________________________________________________________________________________" << endl;
+        SetConsoleTextAttribute(hConsole, 2);
+        char lewygorny = 0xc9;
+        char poziomy = 0xcd;
+        char prawygorny = 0xbb;
+        char lewydolny = 0xc8;
+        char pionowy = 0xba;
+        char prawydolny = 0xbc;
+        char srodkowy = 0xcc;
+        char krzyz = 0xce;
+        char poziomydol = 0xcb;
+        char pionowylewy = 0xb9;
+        char poziomygora = 0xca;
+
+        cout << lewygorny << poziomy << poziomy << poziomy << poziomy << poziomy << poziomy << poziomy << poziomy << poziomy << poziomy << poziomy << poziomy << poziomy << poziomy << poziomy << poziomy << poziomy << poziomy << poziomy << poziomy << poziomy << prawygorny << endl;
+        cout << pionowy << "     MENU GlOWNE     " << pionowy << endl;
+        cout << srodkowy << poziomy << poziomy << poziomy << poziomydol << poziomy << poziomy << poziomy << poziomy << poziomy << poziomy << poziomy << poziomy << poziomy << poziomy << poziomy << poziomy << poziomy << poziomy << poziomy << poziomy << poziomy << pionowylewy << endl;
+        cout << pionowy << " 1 " << pionowy << "    Nowa gra     " << pionowy << endl;
+        cout << srodkowy << poziomy << poziomy << poziomy << krzyz << poziomy << poziomy << poziomy << poziomy << poziomy << poziomy << poziomy << poziomy << poziomy << poziomy << poziomy << poziomy << poziomy << poziomy << poziomy << poziomy << poziomy << pionowylewy << endl;
+        cout << pionowy << " 2 " << pionowy << "   Instrukcja    " << pionowy << endl;
+        cout << srodkowy << poziomy << poziomy << poziomy << krzyz << poziomy << poziomy << poziomy << poziomy << poziomy << poziomy << poziomy << poziomy << poziomy << poziomy << poziomy << poziomy << poziomy << poziomy << poziomy << poziomy << poziomy << pionowylewy << endl;
+        cout << pionowy << " 3 " << pionowy << "  Wyjscie z gry  " << pionowy << endl;
+        cout << lewydolny << poziomy << poziomy << poziomy << poziomygora << poziomy << poziomy << poziomy << poziomy << poziomy << poziomy << poziomy << poziomy << poziomy << poziomy << poziomy << poziomy << poziomy << poziomy << poziomy << poziomy << poziomy << prawydolny << endl;
+
+
+
+        cout << "Wybierz opcje: ";
+        SetConsoleTextAttribute(hConsole, 7);
+        cin >> ans0; cout << "\a";
+        cout << endl << endl;
+
+
+
+
+      switch (ans0)
+      {
+         case 1: ans0 = 1;
+         {
+             cout << "Zaczynamy gre!" << endl;
+         }
+       
+             break;
+         case 2: ans0 = 2;
+         {
+             char r;
+             ifstream file0("rules.txt");
+             if (file0.is_open())
+             {
+                 while (!file0.eof())
+                 {
+                     file0.get(r);
+                     cout << r;
+                 }
+             }
+             else
+                 cout << "Nie znaleziono pliku! Masz jakis blad...sprobuj jeszcze raz niunia :)" << endl;
+             file0.close(); 
+             for (int i = 1; i >= 0; i--)
+             {
+                 Sleep(1000);
+             }
+             SetConsoleTextAttribute(hConsole, 2);
+             cout << "Wszystko jasne " << name << "?\nNacisnij dowolny przycisk aby rozpoczac swoja gre!" << endl;
+             _getch();
+         }
+             break;
+         case 3: ans0 = 3;
+         {
+             cout << "Do zobaczenia " << name << "! Mam nadzieje ze jeszcze do nas wrocisz!" << endl;
+             exit(0);
+         }
+         break;
+      }
+      for (int i = 1; i >= 0; i--)
+      {
+          Sleep(1000);
+      }
+      system("cls");
+  
+      SetConsoleTextAttribute(hConsole, 7);
+      //wybor tematyki gry i rozpoczecie rozgrywki w zaleznosci od wyboru
+      cout << "Tematyka: \n1 -MATEMATYKA \n2 -PRZYRODA \n3 -SPORT" << endl;
+         int whichGame;
+         cout << "Wpisz numer: "; cin >> whichGame;
+
+        
+         switch (whichGame)
+ {
+         case 1: whichGame = 1;    //quiz numer 1
+         {
+             string topic1, whoDid1;
+             string question1[12];
+             string ansA1[12], ansB1[12], ansC1[12], ansD1[12];
+             string ansGood1[12];
+             string line1;
+             string ansUser1;
+             int points1 = 0;
+             int line_nb1 = 1;
+             int quest_nb1 = 0;
+
+
+             fstream file1;
+             file1.open("quiz.number1.txt", ios::in);
+             if (file1.good() == false)
+             {
+                 cout << "Nie znaleziono pliku! Masz jakis blad...sprobuj jeszcze raz niunia :)" << endl;
+                 exit(0);
+             }
+             //jak ma pobierac linie z pliku tekstowego   
+             while (getline(file1, line1))
+             {
+                 switch (line_nb1)
+                 {
+                 case 1: topic1 = line1;               break;
+                 case 2: whoDid1 = line1;              break;
+                 case 3: question1[quest_nb1] = line1; break;
+                 case 4: ansA1[quest_nb1] = line1;     break;
+                 case 5: ansB1[quest_nb1] = line1;     break;
+                 case 6: ansC1[quest_nb1] = line1;     break;
+                 case 7: ansD1[quest_nb1] = line1;     break;
+                 case 8: ansGood1[quest_nb1] = line1;  break;
+                 }
+
+                 if (line_nb1 == 8)
+                 {
+                     line_nb1 = 2;
+                     quest_nb1++;
+                 }
+                 line_nb1++;
+             }
+             plik.close();
+
+             //w petli chcemy aby wypisal pytanie i mozliwe odpowiedzi
+             for (int i = 0; i <= 11; i++)
+             {
+                 SetConsoleTextAttribute(hConsole, 7);
+                 cout << endl << question1[i] << "\a" << endl;
+                 cout << "A. " << ansA1[i] << endl;
+                 cout << "B. " << ansB1[i] << endl;
+                 cout << "C. " << ansC1[i] << endl;
+                 cout << "D. " << ansD1[i] << endl;
+                 for (int i = 1; i >= 0; i--)
+                 {
+                     Sleep(1000);
+                 }
+                 SetConsoleTextAttribute(hConsole, 4);
+                 cout << "Twoja odpowiedz to: ";
+                 cin >> ansUser1;
+                 //zrob z duzej litery w odp mala
+                 transform(ansUser1.begin(), ansUser1.end(), ansUser1.begin(), ::tolower);
+                 for (int i = 1; i >= 0; i--)
+                 {
+                     Sleep(1000);
+                 }
+                 //gdy odpowiedz bedzie poprawna przyznaj uzytkownikowi punkt
+                 if (ansUser1 == ansGood1[i])
+                 {
+                     cout << "Brawo " << name << "!To prawidlowa odpowiedz! OTRZYMUJESZ PUNKT!" << endl;
+                     points1++;
+                 }
+                 else cout << "Zle! Poprawna odpowiedz to: " << ansGood1[i] << endl;
+             }
+             for (int i = 1; i >= 0; i--)
+             {
+                 Sleep(1000);
+             }
+             cout << "To bylo ostatnie pytanie!" << endl;
+             cout << "Koniec quizu! Zdobyte przez Ciebie punkty... ";
+             for (int i = 1; i >= 0; i--)
+             {
+                 Sleep(1000);
+             }
+             cout << points1 << " pkt!";
+             cout << endl;
+             SetConsoleTextAttribute(hConsole, 6);
+             cout << "Wygrywasz ";
+             switch (points1)
+             {
+             case 1:    (points1 = 0); { cout << "0 zl :("; }      break;
+             case 2:    (points1 = 1); {cout << "500 zl!"; }       break;
+             case 3:    (points1 = 2); {cout << "1 000 zl!"; }     break;
+             case 4:    (points1 = 3); {cout << "2 000 zl!"; }     break;
+             case 5:    (points1 = 4); {cout << "5 000 zl!"; }     break;
+             case 6:    (points1 = 5); {cout << "10 000 zl!"; }    break;
+             case 7:    (points1 = 6); {cout << "20 000 zl!"; }    break;
+             case 8:    (points1 = 7); {cout << "40 000 zl!"; }    break;
+             case 9:    (points1 = 8); {cout << "75 000 zl!"; }    break;
+             case 10:   (points1 = 9); {cout << "125 000 zl!"; }   break;
+             case 11:   (points1 = 10); {cout << "250 000 zl!"; }   break;
+             case 12:   (points1 = 11); {cout << "500 000 zl!"; }   break;
+             case 13:   (points1 = 12); {cout << "1 000 000 zl!!"; } break;
+             }
+
+
+         }
+         break;
+
+         case 2: whichGame = 2;    //quiz numer 2
+         {
+             string topic2, whoDid2;
+             string question2[12];
+             string ansA2[12], ansB2[12], ansC2[12], ansD2[12];
+             string ansGood2[12];
+             string line2;
+             string ansUser2;
+             int points2 = 0;
+             int line_nb2 = 1;
+             int quest_nb2 = 0;
+
+
+             fstream file2;
+             file2.open("quiz.number2.txt", ios::in);
+             if (file2.good() == false)
+             {
+                 cout << "Nie znaleziono pliku! Masz jakis blad...sprobuj jeszcze raz niunia :)" << endl;
+                 exit(0);
+             }
+             //jak ma pobierac linie z pliku tekstowego   
+             while (getline(file2, line2))
+             {
+                 switch (line_nb2)
+                 {
+                 case 1: topic2 = line2;              break;
+                 case 2: whoDid2 = line2;             break;
+                 case 3: question2[quest_nb2] = line2; break;
+                 case 4: ansA2[quest_nb2] = line2;     break;
+                 case 5: ansB2[quest_nb2] = line2;     break;
+                 case 6: ansC2[quest_nb2] = line2;     break;
+                 case 7: ansD2[quest_nb2] = line2;     break;
+                 case 8: ansGood2[quest_nb2] = line2;  break;
+                 }
+
+                 if (line_nb2 == 8) {
+                     line_nb2 = 2;
+                     quest_nb2++;
+                 }
+                 line_nb2++;
+             }
+             plik.close();
+
+             //w petli chcemy aby wypisal pytanie i mozliwe odpowiedzi
+             for (int i = 0; i <= 11; i++)
+             {
+                 SetConsoleTextAttribute(hConsole, 7);
+                 cout << endl << question2[i] << "\a" << endl;
+                 cout << "A. " << ansA2[i] << endl;
+                 cout << "B. " << ansB2[i] << endl;
+                 cout << "C. " << ansC2[i] << endl;
+                 cout << "D. " << ansD2[i] << endl;
+                 for (int i = 1; i >= 0; i--)
+                 {
+                     Sleep(1000);
+                 }
+                 SetConsoleTextAttribute(hConsole, 4);
+                 cout << "Twoja odpowiedz to: ";
+                 cin >> ansUser2;
+                 //zrob z duzej litery w odp mala
+                 transform(ansUser2.begin(), ansUser2.end(), ansUser2.begin(), ::tolower);
+                 for (int i = 1; i >= 0; i--)
+                 {
+                     Sleep(1000);
+                 }
+                 //gdy odpowiedz bedzie poprawna przyznaj uzytkownikowi punkt
+                 if (ansUser2 == ansGood2[i])
+                 {
+                     cout << "Brawo " << name << "!To prawidlowa odpowiedz! OTRZYMUJESZ PUNKT!" << endl;
+                     points2++;
+                 }
+                 else cout << "Zle! Poprawna odpowiedz to: " << ansGood2[i] << endl;
+             }
+             for (int i = 1; i >= 0; i--)
+             {
+                 Sleep(1000);
+             }
+             cout << "To bylo ostatnie pytanie!" << endl;
+             cout << "Koniec quizu! Zdobyte przez Ciebie punkty... ";
+             for (int i = 1; i >= 0; i--)
+             {
+                 Sleep(1000);
+             }
+             cout << points2 << " pkt!";
+             cout << endl;
+             SetConsoleTextAttribute(hConsole, 6);
+             cout << "Wygrywasz ";
+             switch (points2)
+             {
+             case 1:    (points2 = 0); { cout << "0 zl :("; }      break;
+             case 2:    (points2 = 1); {cout << "500 zl!"; }       break;
+             case 3:    (points2 = 2); {cout << "1 000 zl!"; }     break;
+             case 4:    (points2 = 3); {cout << "2 000 zl!"; }     break;
+             case 5:    (points2 = 4); {cout << "5 000 zl!"; }     break;
+             case 6:    (points2 = 5); {cout << "10 000 zl!"; }    break;
+             case 7:    (points2 = 6); {cout << "20 000 zl!"; }    break;
+             case 8:    (points2 = 7); {cout << "40 000 zl!"; }    break;
+             case 9:    (points2 = 8); {cout << "75 000 zl!"; }    break;
+             case 10:   (points2 = 9); {cout << "125 000 zl!"; }   break;
+             case 11:   (points2 = 10); {cout << "250 000 zl!"; }   break;
+             case 12:   (points2 = 11); {cout << "500 000 zl!"; }   break;
+             case 13:   (points2 = 12); {cout << "1 000 000 zl!!"; } break;
+             }
+         }
+         break;
+
+         case 3: whichGame = 3;    //quiz numer 3
+         {
+             string topic3, whoDid3;
+             string question3[12];
+             string ansA3[12], ansB3[12], ansC3[12], ansD3[12];
+             string ansGood3[12];
+             string line3;
+             string ansUser3;
+             int points3 = 0;
+             int line_nb3 = 1;
+             int quest_nb3 = 0;
+
+
+             fstream file3;
+             file3.open("quiz.number3.txt", ios::in);
+             if (file3.good() == false)
+             {
+                 cout << "Nie znaleziono pliku! Masz jakis blad...sprobuj jeszcze raz niunia :)" << endl;
+                 exit(0);
+             }
+             //jak ma pobierac linie z pliku tekstowego   
+             while (getline(file3, line3))
+             {
+                 switch (line_nb3)
+                 {
+                 case 1: topic3 = line3;              break;
+                 case 2: whoDid3 = line3;             break;
+                 case 3: question3[quest_nb3] = line3; break;
+                 case 4: ansA3[quest_nb3] = line3;     break;
+                 case 5: ansB3[quest_nb3] = line3;     break;
+                 case 6: ansC3[quest_nb3] = line3;     break;
+                 case 7: ansD3[quest_nb3] = line3;     break;
+                 case 8: ansGood3[quest_nb3] = line3;  break;
+                 }
+
+                 if (line_nb3 == 8) {
+                     line_nb3 = 2;
+                     quest_nb3++;
+                 }
+                 line_nb3++;
+             }
+             plik.close();
+
+             //w petli chcemy aby wypisal pytanie i mozliwe odpowiedzi
+             for (int i = 0; i <= 11; i++)
+             {
+                 SetConsoleTextAttribute(hConsole, 7);
+                 cout << endl << question3[i] << "\a" << endl;
+                 cout << "A. " << ansA3[i] << endl;
+                 cout << "B. " << ansB3[i] << endl;
+                 cout << "C. " << ansC3[i] << endl;
+                 cout << "D. " << ansD3[i] << endl;
+                 for (int i = 1; i >= 0; i--)
+                 {
+                     Sleep(1000);
+                 }
+                 SetConsoleTextAttribute(hConsole, 4);
+                 cout << "Twoja odpowiedz to: ";
+                 cin >> ansUser3;
+                 //zrob z duzej litery w odp mala
+                 transform(ansUser3.begin(), ansUser3.end(), ansUser3.begin(), ::tolower);
+                 for (int i = 1; i >= 0; i--)
+                 {
+                     Sleep(1000);
+                 }
+                 //gdy odpowiedz bedzie poprawna przyznaj uzytkownikowi punkt
+                 if (ansUser3 == ansGood3[i])
+                 {
+                     cout << "Brawo " << name << "!To prawidlowa odpowiedz! OTRZYMUJESZ PUNKT!" << endl;
+                     points3++;
+                 }
+                 else cout << "zle! Poprawna odpowiedz to: " << ansGood3[i] << endl;
+             }
+             for (int i = 1; i >= 0; i--)
+             {
+                 Sleep(1000);
+             }
+             cout << endl;
+             cout << "To bylo ostatnie pytanie!" << endl;
+             cout << "Koniec quizu! Zdobyte przez Ciebie punkty... ";
+             for (int i = 1; i >= 0; i--)
+             {
+                 Sleep(1000);
+             }
+             cout << points3 << " pkt!";
+             cout << endl;
+             SetConsoleTextAttribute(hConsole, 6);
+             cout << "Wygrywasz ";
+             switch (points3)
+             {
+             case 1:    (points3 = 0); { cout << "0 zl :("; }      break;
+             case 2:    (points3 = 1); {cout << "500 zl!"; }       break;
+             case 3:    (points3 = 2); {cout << "1 000 zl!"; }     break;
+             case 4:    (points3 = 3); {cout << "2 000 zl!"; }     break;
+             case 5:    (points3 = 4); {cout << "5 000 zl!"; }     break;
+             case 6:    (points3 = 5); {cout << "10 000 zl!"; }    break;
+             case 7:    (points3 = 6); {cout << "20 000 zl!"; }    break;
+             case 8:    (points3 = 7); {cout << "40 000 zl!"; }    break;
+             case 9:    (points3 = 8); {cout << "75 000 zl!"; }    break;
+             case 10:   (points3 = 9); {cout << "125 000 zl!"; }   break;
+             case 11:   (points3 = 10); {cout << "250 000 zl!"; }   break;
+             case 12:   (points3 = 11); {cout << "500 000 zl!"; }   break;
+             case 13:   (points3 = 12); {cout << "1 000 000 zl!!"; } break;
+             }
+         }
+
+
+         break;
+
+ }
+    
+         cout << endl << endl;
+        system("pause");
+}
